@@ -1,8 +1,5 @@
 # A Lineman JS Template using Angular
 
-![The Login Page](https://raw.github.com/davemo/lineman-angular-template/master/doc/login.png)
-![The Home Page](https://raw.github.com/davemo/lineman-angular-template/master/doc/home.png)
-
 This provides the basic configuration needed to get an Angular app up and running with lineman. It includes the following features:
 
 1. Template Precompilation into Angulars $templateCache using `grunt-angular-templates`
@@ -11,6 +8,9 @@ This provides the basic configuration needed to get an Angular app up and runnin
 4. A directive that shows a message on mouseover
 5. 2 Controllers, for `home` and `login`, with $scope variables set and bound
 6. A working, bound login form (username/password don't matter, but are required)
+
+![The Login Page](https://raw.github.com/davemo/lineman-angular-template/master/doc/login.png)
+![The Home Page](https://raw.github.com/davemo/lineman-angular-template/master/doc/home.png)
 
 # Instructions
 
