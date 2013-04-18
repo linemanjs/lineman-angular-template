@@ -1,0 +1,14 @@
+{
+  "name": "lineman-angular-template",
+  "title": "An HTML/JS/CSS app using Angular.JS",
+  "version": "0.0.1",
+  "private": true,
+  "author": {
+    "name": "John Doe",
+    "company": "ACME, Inc."
+  },
+  "dependencies": {
+    "lineman": "~0.4.10",
+    "grunt-angular-templates": "0.3.1"
+  }
+}
