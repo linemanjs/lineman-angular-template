@@ -30,7 +30,7 @@ module.exports = require('lineman').config.extend('files', {
   less: {
     compile: {
       options: {
-        paths: ["app/css/**/*.less", "vendor/css/normalize.css", "vendor/css/**/*.css"]
+        paths: ["vendor/css/normalize.css", "vendor/css/**/*.css", "app/css/**/*.less"]
       }
     }
   }
