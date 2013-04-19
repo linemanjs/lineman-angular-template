@@ -4,8 +4,8 @@
   "version": "0.0.1",
   "private": true,
   "author": {
-    "name": "John Doe",
-    "company": "ACME, Inc."
+    "name": "David Mosher",
+    "company": "DAVEMO Consulting"
   },
   "dependencies": {
     "lineman": "~0.4.10",
