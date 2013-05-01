@@ -1,4 +1,4 @@
-window.app.config(function($routeProvider) {
+angular.module("app").config(['$routeProvider', function($routeProvider) {
 
   $routeProvider.when('/login', {
     templateUrl: 'angular/login.html',
@@ -12,4 +12,4 @@ window.app.config(function($routeProvider) {
 
   $routeProvider.otherwise({ redirectTo: '/login' });
 
-});
+}]);

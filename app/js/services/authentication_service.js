@@ -1,4 +1,4 @@
-window.app.factory('AuthenticationService', function($http) {
+angular.module("app").factory('AuthenticationService', ['$http', function($http) {
   // these routes are configured in config/server.js
   return {
     login: function(credentials) {
@@ -8,4 +8,4 @@ window.app.factory('AuthenticationService', function($http) {
       return $http.post('/logout');
     }
   };
-});
+}]);

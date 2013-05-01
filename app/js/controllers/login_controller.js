@@ -1,4 +1,4 @@
-window.app.controller('LoginController', function($scope, $location, AuthenticationService) {
+angular.module("app").controller('LoginController', ['$scope', '$location', 'AuthenticationService', function($scope, $location, AuthenticationService) {
   $scope.credentials = { username: "", password: "" };
 
   var onLoginSuccess = function(response) {
@@ -9,4 +9,4 @@ window.app.controller('LoginController', function($scope, $location, Authenticat
   $scope.login = function() {
     AuthenticationService.login($scope.credentials).success(onLoginSuccess);
   };
-});
+}]);

@@ -1,12 +1,10 @@
-window.app = _(angular.module("app", [])).tap(function(app) {
+angular.module("app", []).run(['$rootScope', function($rootScope) {
   // adds some basic utilities to the $rootScope for debugging purposes
-  app.run(function($rootScope) {
-    $rootScope.log = function(thing) {
-      console.log(thing);
-    };
+  $rootScope.log = function(thing) {
+    console.log(thing);
+  };
 
-    $rootScope.alert = function(thing) {
-      alert(thing);
-    };
-  });
-});
+  $rootScope.alert = function(thing) {
+    alert(thing);
+  };
+}]);
