@@ -1,4 +1,4 @@
-angular.module("app", []).run(['$rootScope', function($rootScope) {
+angular.module("app", []).run(function($rootScope) {
   // adds some basic utilities to the $rootScope for debugging purposes
   $rootScope.log = function(thing) {
     console.log(thing);
@@ -7,4 +7,4 @@ angular.module("app", []).run(['$rootScope', function($rootScope) {
   $rootScope.alert = function(thing) {
     alert(thing);
   };
-}]);
+});
