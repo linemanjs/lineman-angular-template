@@ -7,6 +7,12 @@
 
 module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application', {
 
+  // configure lineman to load additional angular related npm tasks
+  loadNpmTasks: [
+    "grunt-angular-templates",
+    "grunt-ngmin"
+  ],
+
   // configuration for grunt-angular-templates
   ngtemplates: {
     app: { // "app" matches the name of the angular module defined in app.js
@@ -27,9 +33,10 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
     }
   },
 
-  // replaces linemans common lifecycle "handlebars" task with "ngtemplates"
-  appTasks: {
-    common: ["coffee", "less", "jshint", "ngtemplates", "jst", "configure", "concat:js", "concat:spec", "concat:css", "ngmin", "images:dev", "webfonts:dev", "homepage:dev"]
+  // task override configuration
+  prependTasks: {
+    dist: ["ngmin"],         // ngmin should run in dist only
+    common: ["ngtemplates"] // ngtemplates runs in dist and dev
   },
 
   // grunt-angular-templates expects that a module already be defined to inject into
@@ -45,7 +52,7 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
   watch: {
     ngtemplates: {
       files: "app/templates/**/*.html",
-      tasks: ["configure", "ngtemplates", "configure", "concat:js"]
+      tasks: ["ngtemplates", "concat"]
     }
   }
 
