@@ -13,6 +13,17 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
     "grunt-ngmin"
   ],
 
+  // we don't have handlebars templates or coffeescript by default
+  removeTasks: {
+    common: ["handlebars", "coffee"]
+  },
+
+  // task override configuration
+  prependTasks: {
+    dist: ["ngmin"],         // ngmin should run in dist only
+    common: ["ngtemplates"] // ngtemplates runs in dist and dev
+  },
+
   // configuration for grunt-angular-templates
   ngtemplates: {
     app: { // "app" matches the name of the angular module defined in app.js
@@ -31,16 +42,6 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
       src: "<%= files.js.concatenated %>",
       dest: "<%= files.js.concatenated %>"
     }
-  },
-
-  removeTasks: {
-    common: ["handlebars", "coffee"]
-  },
-
-  // task override configuration
-  prependTasks: {
-    dist: ["ngmin"],         // ngmin should run in dist only
-    common: ["ngtemplates"] // ngtemplates runs in dist and dev
   },
 
   // grunt-angular-templates expects that a module already be defined to inject into
