@@ -33,6 +33,10 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
     }
   },
 
+  removeTasks: {
+    common: ["handlebars", "coffee"]
+  },
+
   // task override configuration
   prependTasks: {
     dist: ["ngmin"],         // ngmin should run in dist only
