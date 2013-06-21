@@ -1,6 +1,6 @@
 # A Lineman JS Template using Angular
 
-** Supporting Lineman Version : 0.7.1 **
+** Supporting Lineman Version : 0.9.0 **
 
 This provides the basic configuration needed to get an Angular app up and running with lineman. It includes the following features:
 
