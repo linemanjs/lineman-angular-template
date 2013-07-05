@@ -1,10 +1,6 @@
 describe "directive: showsMessageWhenHovered", ->
 
-  html = null
-  scope = null
-  elem = null
-  directiveMessage = null
-  originalMessage = null
+  html = scope = elem = directiveMessage = originalMessage = null
 
   Given -> module("app")
 
