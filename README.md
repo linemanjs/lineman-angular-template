@@ -19,8 +19,9 @@ This provides the basic configuration needed to get an Angular app up and runnin
 
 1. git clone this repo
 2. npm install -g lineman (if you don't already have lineman installed)
-3. npm install
-4. lineman run
-5. open your web browser to localhost:8000
+3. cd in to cloned repo
+4. npm install
+5. lineman run
+6. open your web browser to localhost:8000
 
 Hopefully this helps you get up and running with AngularJS!
