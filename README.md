@@ -11,7 +11,7 @@ This provides the basic configuration needed to get an Angular app up and runnin
 5. 2 Controllers, for `home` and `login`, with $scope variables set and bound
 6. A working, bound login form (username/password don't matter, but are required)
 7. Configured [grunt-ngmin](https://github.com/btford/grunt-ngmin) so you don't have to fully qualify angular dependencies.
-8. Auto generated [sourcemaps](www.html5rocks.com/en/tutorials/developertools/sourcemaps/) with inlined sources via [grunt-concat-sourcemap](https://github.com/kozy4324/grunt-concat-sourcemap) (you'll need to [enable sourcemaps](http://cl.ly/image/1d0X2z2u1E3b) in Firefox/Chrome to see this)
+8. Auto generated [sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) with inlined sources via [grunt-concat-sourcemap](https://github.com/kozy4324/grunt-concat-sourcemap) (you'll need to [enable sourcemaps](http://cl.ly/image/1d0X2z2u1E3b) in Firefox/Chrome to see this)
 
 ![The Login Page](https://raw.github.com/davemo/lineman-angular-template/master/doc/login.png)
 ![The Home Page](https://raw.github.com/davemo/lineman-angular-template/master/doc/home.png)
