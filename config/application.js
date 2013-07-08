@@ -16,7 +16,7 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
 
   // we don't have handlebars templates or coffeescript by default
   removeTasks: {
-    common: ["concat", "handlebars", "coffee"]
+    common: ["concat", "handlebars", "coffee", "jst"]
   },
 
   // task override configuration
