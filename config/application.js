@@ -10,18 +10,24 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
   // configure lineman to load additional angular related npm tasks
   loadNpmTasks: [
     "grunt-angular-templates",
+    "grunt-concat-sourcemap",
     "grunt-ngmin"
   ],
 
   // we don't have handlebars templates or coffeescript by default
   removeTasks: {
-    common: ["handlebars", "coffee"]
+    common: ["concat", "handlebars", "coffee"]
   },
 
   // task override configuration
   prependTasks: {
     dist: ["ngmin"],         // ngmin should run in dist only
     common: ["ngtemplates"] // ngtemplates runs in dist and dev
+  },
+
+  // swaps concat_sourcemap in place of vanilla concat
+  appendTasks: {
+    common: ["concat_sourcemap"]
   },
 
   // configuration for grunt-angular-templates
@@ -44,12 +50,24 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
     }
   },
 
+  // generates a sourcemap for js, specs, and css with inlined sources
   // grunt-angular-templates expects that a module already be defined to inject into
   // this configuration orders the template inclusion _after_ the app level module
-  concat: {
+  concat_sourcemap: {
+    options: {
+      sourcesContent: true
+    },
     js: {
       src: ["<banner:meta.banner>", "<%= files.js.vendor %>", "<%= files.coffee.generated %>", "<%= files.js.app %>", "<%= files.ngtemplates.dest %>"],
-      separator: ";"
+      dest: "<%= files.js.concatenated %>"
+    },
+    spec: {
+      src: ["<%= files.js.specHelpers %>", "<%= files.coffee.generatedSpecHelpers %>", "<%= files.js.spec %>", "<%= files.coffee.generatedSpec %>"],
+      dest: "<%= files.js.concatenatedSpec %>"
+    },
+    css: {
+      src: ["<%= files.less.generatedVendor %>", "<%= files.sass.generatedVendor %>", "<%= files.css.vendor %>", "<%= files.less.generatedApp %>", "<%= files.sass.generatedApp %>", "<%= files.css.app %>"],
+      dest: "<%= files.css.concatenated %>"
     }
   },
 
@@ -57,7 +75,7 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
   watch: {
     ngtemplates: {
       files: "app/templates/**/*.html",
-      tasks: ["ngtemplates", "concat"]
+      tasks: ["ngtemplates", "concat_sourcemap:js"]
     }
   }
 
