@@ -1,4 +1,5 @@
 var protractor = require('protractor');
+require('protractor/jasminewd');
 
 describe('my app', function () {
   var ptor;
@@ -15,8 +16,7 @@ describe('my app', function () {
 
       ptor.findElement(protractor.By.id('log-in')).click()
       var message = ptor.findElement(protractor.By.css('.alert-box')).getText().then(function(text) {
-        expect(text).toEqual('mom');
-        console.log(text);
+        expect(text).toEqual('Mouse Over these images to see a directive at work');
       });
     });
   });
