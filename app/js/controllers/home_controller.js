@@ -3,7 +3,6 @@ angular.module("app").controller('HomeController', function($scope, $location, A
   $scope.message = "Mouse Over these images to see a directive at work";
 
   var onLogoutSuccess = function(response) {
-    alert(response.message);
     $location.path('/login');
   };
 

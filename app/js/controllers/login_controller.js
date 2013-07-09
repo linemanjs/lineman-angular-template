@@ -2,7 +2,6 @@ angular.module("app").controller('LoginController', function($scope, $location, 
   $scope.credentials = { username: "", password: "" };
 
   var onLoginSuccess = function(response) {
-    alert(response.message);
     $location.path('/home');
   };
 
