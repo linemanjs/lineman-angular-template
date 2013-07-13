@@ -15,7 +15,7 @@ describe('my app', function () {
       ptor.findElement(protractor.By.input('credentials.password')).sendKeys('Wiggum');
 
       ptor.findElement(protractor.By.id('log-in')).click()
-      var message = ptor.findElement(protractor.By.css('.alert-box')).getText().then(function(text) {
+      var message = ptor.findElement(protractor.By.binding('{{ message }}')).getText().then(function(text) {
         expect(text).toEqual('Mouse Over these images to see a directive at work');
       });
     });
