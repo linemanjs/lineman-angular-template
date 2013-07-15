@@ -14,4 +14,4 @@ describe "service: AuthenticationService", ->
 
   describe "#logout", ->
     When -> @AuthenticationService.logout()
-    Then -> expect(@$httpPost).toHaveBeenCalled()
+    Then -> expect(@$httpPost).toHaveBeenCalledWith('/logout')
