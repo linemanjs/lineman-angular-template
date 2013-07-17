@@ -7,21 +7,32 @@
 
 module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application', {
 
+  // html5push state simulation
+  server: {
+    pushState: true
+  },
+
   // configure lineman to load additional angular related npm tasks
   loadNpmTasks: [
     "grunt-angular-templates",
+    "grunt-concat-sourcemap",
     "grunt-ngmin"
   ],
 
   // we don't have handlebars templates or coffeescript by default
   removeTasks: {
-    common: ["handlebars"]
+    common: ["concat", "handlebars", "coffee", "jst"]
   },
 
   // task override configuration
   prependTasks: {
     dist: ["ngmin"],         // ngmin should run in dist only
     common: ["ngtemplates"] // ngtemplates runs in dist and dev
+  },
+
+  // swaps concat_sourcemap in place of vanilla concat
+  appendTasks: {
+    common: ["concat_sourcemap"]
   },
 
   // configuration for grunt-angular-templates
@@ -44,20 +55,62 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
     }
   },
 
+  // generates a sourcemap for js, specs, and css with inlined sources
   // grunt-angular-templates expects that a module already be defined to inject into
   // this configuration orders the template inclusion _after_ the app level module
-  concat: {
+  concat_sourcemap: {
+    options: {
+      sourcesContent: true
+    },
     js: {
       src: ["<banner:meta.banner>", "<%= files.js.vendor %>", "<%= files.coffee.generated %>", "<%= files.js.app %>", "<%= files.ngtemplates.dest %>"],
-      separator: ";"
+      dest: "<%= files.js.concatenated %>"
+    },
+    spec: {
+      src: ["<%= files.js.specHelpers %>", "<%= files.coffee.generatedSpecHelpers %>", "<%= files.js.spec %>", "<%= files.coffee.generatedSpec %>"],
+      dest: "<%= files.js.concatenatedSpec %>"
+    },
+    css: {
+      src: ["<%= files.less.generatedVendor %>", "<%= files.sass.generatedVendor %>", "<%= files.css.vendor %>", "<%= files.less.generatedApp %>", "<%= files.sass.generatedApp %>", "<%= files.css.app %>"],
+      dest: "<%= files.css.concatenated %>"
     }
   },
 
-  // configures grunt-watch-nospawn to listen for changes to, and recompile angular templates
+  // configures grunt-watch-nospawn to listen for changes to
+  // and recompile angular templates, also swaps lineman default
+  // watch target concat with concat_sourcemap
   watch: {
     ngtemplates: {
       files: "app/templates/**/*.html",
-      tasks: ["ngtemplates", "concat"]
+      tasks: ["ngtemplates", "concat_sourcemap:js"]
+    },
+    js: {
+      files: ["<%= files.js.vendor %>", "<%= files.js.app %>"],
+      tasks: ["concat_sourcemap:js"]
+    },
+    coffee: {
+      files: "<%= files.coffee.app %>",
+      tasks: ["coffee", "concat_sourcemap:js"]
+    },
+    jsSpecs: {
+      files: ["<%= files.js.specHelpers %>", "<%= files.js.spec %>"],
+      tasks: ["concat_sourcemap:spec"]
+    },
+    coffeeSpecs: {
+      files: ["<%= files.coffee.specHelpers %>", "<%= files.coffee.spec %>"],
+      tasks: ["coffee", "concat_sourcemap:spec"]
+    },
+    css: {
+      files: ["<%= files.css.vendor %>", "<%= files.css.app %>"],
+      tasks: ["concat_sourcemap:css"]
+    },
+    less: {
+      files: ["<%= files.less.vendor %>", "<%= files.less.app %>"],
+      tasks: ["less", "concat_sourcemap:css"]
+    },
+    sass: {
+      files: ["<%= files.sass.vendor %>", "<%= files.sass.app %>"],
+      tasks: ["sass", "concat_sourcemap:css"]
     }
   }
 

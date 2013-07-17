@@ -1,6 +1,6 @@
 # A Lineman JS Template using Angular
 
-** Supporting Lineman Version : 0.9.0 **
+** Supporting Lineman Version : 0.11.1 **
 
 This provides the basic configuration needed to get an Angular app up and running with lineman. It includes the following features:
 
@@ -11,6 +11,7 @@ This provides the basic configuration needed to get an Angular app up and runnin
 5. 2 Controllers, for `home` and `login`, with $scope variables set and bound
 6. A working, bound login form (username/password don't matter, but are required)
 7. Configured [grunt-ngmin](https://github.com/btford/grunt-ngmin) so you don't have to fully qualify angular dependencies.
+8. Auto generated [sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) with inlined sources via [grunt-concat-sourcemap](https://github.com/kozy4324/grunt-concat-sourcemap) (you'll need to [enable sourcemaps](http://cl.ly/image/1d0X2z2u1E3b) in Firefox/Chrome to see this)
 
 ![The Login Page](https://raw.github.com/davemo/lineman-angular-template/master/doc/login.png)
 ![The Home Page](https://raw.github.com/davemo/lineman-angular-template/master/doc/home.png)
@@ -19,8 +20,9 @@ This provides the basic configuration needed to get an Angular app up and runnin
 
 1. git clone this repo
 2. npm install -g lineman (if you don't already have lineman installed)
-3. npm install
-4. lineman run
-5. open your web browser to localhost:8000
+3. cd in to cloned repo
+4. npm install
+5. lineman run
+6. open your web browser to localhost:8000
 
 Hopefully this helps you get up and running with AngularJS!

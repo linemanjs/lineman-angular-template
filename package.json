@@ -10,7 +10,9 @@
   "dependencies": {
     "grunt-angular-templates": "0.3.8",
     "grunt-ngmin": "~0.0.2",
-    "protractor": "~0.6.1"
+    "protractor": "~0.6.1",
+    "grunt": "~0.4.1",
+    "grunt-concat-sourcemap": "~0.3.0"
   },
   "engines": {
     "node": "~>0.10.5",

@@ -1,0 +1,19 @@
+<!-- With $resource -->
+
+<ul class="books">
+  <li class="panel" ng-repeat="book in books">
+    {{ book.title }} by {{ book.author }}
+  </li>
+</ul>
+
+<!-- With $http
+
+Note the extra 'books.data', which is needed because $resource does fancy promise resolution
+when attached to a controller scope
+
+<ul class="books">
+  <li class="panel" ng-repeat="book in books.data">
+    {{ book.title }} by {{ book.author }}
+  </li>
+</ul>
+ -->
