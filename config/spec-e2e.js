@@ -12,7 +12,10 @@ exports.config = {
 
   baseUrl: 'http://localhost:8000',
 
-  specs: ['spec-e2e/login_spec.js'],
+  specs: [
+    'spec-e2e/login_spec.js',
+    'spec-e2e/books_spec.js'
+  ],
 
   jasmineNodeOpts: {
     isVerbose: false,

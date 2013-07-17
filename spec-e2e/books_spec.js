@@ -8,23 +8,27 @@ describe('my angular app', function () {
     ptor = protractor.getInstance();
 
     beforeEach(function () {
-      ptor.get('/books');
+      ptor.get('/list-of-books');
     });
 
     it('should show me a list of books', function() {
+      ptor.findElement(
+        protractor.By.repeater('book in books').row(1)).
+        getText().then(function(text) {
+          expect(text).toEqual('Great Expectations by Dickens');
+        });
 
+      ptor.findElement(
+        protractor.By.repeater('book in books').row(2)).
+        getText().then(function(text) {
+          expect(text).toEqual('Foundation Series by Asimov');
+        });
+
+      ptor.findElement(
+        protractor.By.repeater('book in books').row(3)).
+        getText().then(function(text) {
+          expect(text).toEqual('Treasure Island by Stephenson');
+        });
     });
-
-    // describe('the list ', function() {
-    //   it('should redirect me to the home page and I should see a message', function() {
-    //     ptor.findElement(protractor.By.input('credentials.username')).sendKeys('Ralph');
-    //     ptor.findElement(protractor.By.input('credentials.password')).sendKeys('Wiggum');
-
-    //     ptor.findElement(protractor.By.id('log-in')).click()
-    //     var message = ptor.findElement(protractor.By.binding('{{ message }}')).getText().then(function(text) {
-    //       expect(text).toEqual('Mouse Over these images to see a directive at work');
-    //     });
-    //   });
-    // });
   });
 });
