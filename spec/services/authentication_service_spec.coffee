@@ -2,10 +2,9 @@ describe "service: AuthenticationService", ->
 
   Given -> module("app")
 
-  Given -> inject ($http, AuthenticationService) =>
+  Given -> inject ($http, @AuthenticationService) =>
     @$httpPost = spyOn($http, 'post')
     @$httpGet  = spyOn($http, 'get')
-    @AuthenticationService = AuthenticationService
 
   describe "#login", ->
     Given  -> @credentials = {name: 'Dave'}
