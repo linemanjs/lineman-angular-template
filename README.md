@@ -10,9 +10,8 @@ This provides the basic configuration needed to get an Angular app up and runnin
 6. A working, bound login form (username/password don't matter, but are required)
 7. Configured [grunt-ngmin](https://github.com/btford/grunt-ngmin) so you don't have to fully qualify angular dependencies.
 8. Auto generated [sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) with inlined sources via [grunt-concat-sourcemap](https://github.com/kozy4324/grunt-concat-sourcemap) (you'll need to [enable sourcemaps](http://cl.ly/image/1d0X2z2u1E3b) in Firefox/Chrome to see this)
-
-![The Login Page](https://raw.github.com/davemo/lineman-angular-template/master/doc/login.png)
-![The Home Page](https://raw.github.com/davemo/lineman-angular-template/master/doc/home.png)
+9. [Unit Tests](https://github.com/davemo/lineman-angular-template/tree/master/spec) and [End-to-End Tests](https://github.com/davemo/lineman-angular-template/tree/master/spec-e2e)
+10. Configuration to run [Protractor](https://github.com/juliemr/protractor) for End-to-End Tests
 
 # Instructions
 
@@ -39,5 +38,5 @@ To run the end-to-end tests:
 3. `brew install chromedriver`
 4. `lineman run`
 5. `./node_modules/protractor/bin/protractor config/spec-e2e.js`
- 
+
 Hopefully this helps you get up and running with AngularJS!
