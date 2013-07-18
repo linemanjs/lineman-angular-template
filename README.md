@@ -1,7 +1,5 @@
 # A Lineman JS Template using Angular
 
-** Supporting Lineman Version : 0.11.1 **
-
 This provides the basic configuration needed to get an Angular app up and running with lineman. It includes the following features:
 
 1. Template Precompilation into Angulars $templateCache using `grunt-angular-templates`
@@ -18,11 +16,28 @@ This provides the basic configuration needed to get an Angular app up and runnin
 
 # Instructions
 
-1. git clone this repo
-2. npm install -g lineman (if you don't already have lineman installed)
-3. cd in to cloned repo
-4. npm install
-5. lineman run
+1. `git clone https://github.com/davemo/lineman-angular-template.git my-lineman-app`
+2. `cd my-lineman-app`
+3. `npm install -g lineman`
+4. `npm install`
+5. `lineman run`
 6. open your web browser to localhost:8000
 
+# Running Tests
+
+This template was used as the basis of my [Testing Strategies for Angular JS](http://www.youtube.com/watch?v=UYVcY9EJcRs) screencast, and contains all the tests we wrote in the screencast and a few more!
+
+To run the unit tests:
+
+1. `lineman run` from 1 terminal window
+2. `lineman spec` from another, this will launch Testem and execute specs in Chrome
+
+To run the end-to-end tests:
+
+1. `npm install protractor`
+2. `brew install selenium-server-standalone`
+3. `brew install chromedriver`
+4. `lineman run`
+5. `./node_modules/protractor/bin/protractor config/spec-e2e.js`
+ 
 Hopefully this helps you get up and running with AngularJS!
