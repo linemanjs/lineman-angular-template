@@ -30,14 +30,14 @@ This template was used as the basis of my [Testing Strategies for Angular JS](ht
 To run the unit tests:
 
 1. `lineman run` from 1 terminal window
-2. `lineman spec` from another, this will launch Testem and execute specs in Chrome
+2. `lineman spec` from another terminal window, this will launch Testem and execute specs in Chrome
 
 To run the end-to-end tests:
 
 1. `npm install protractor`
 2. `brew install selenium-server-standalone`
 3. `brew install chromedriver`
-4. `lineman run`
-5. `./node_modules/protractor/bin/protractor config/spec-e2e.js`
+4. `lineman run` from 1 terminal window
+5. `./node_modules/protractor/bin/protractor config/spec-e2e.js` from another terminal window
 
 Hopefully this helps you get up and running with AngularJS!
