@@ -1,5 +1,5 @@
 /**
- * @license AngularJS v1.1.4
+ * @license AngularJS v1.1.5
  * (c) 2010-2012 Google, Inc. http://angularjs.org
  * License: MIT
  *
@@ -241,7 +241,7 @@ angular.mock.$ExceptionHandlerProvider = function() {
    *
    * @param {string} mode Mode of operation, defaults to `rethrow`.
    *
-   *   - `rethrow`: If any errors are are passed into the handler in tests, it typically
+   *   - `rethrow`: If any errors are passed into the handler in tests, it typically
    *                means that there is a bug in the application or test, so this mock will
    *                make these tests fail.
    *   - `log`: Sometimes it is desirable to test that an error is thrown, for this case the `log` mode stores an
@@ -322,7 +322,13 @@ angular.mock.$LogProvider = function() {
        * @propertyOf ngMock.$log
        *
        * @description
-       * Array of logged messages.
+       * Array of messages logged using {@link ngMock.$log#log}.
+       *
+       * @example
+       * <pre>
+       * $log.log('Some Log');
+       * var first = $log.log.logs.unshift();
+       * </pre>
        */
       $log.log.logs = [];
       /**
@@ -331,7 +337,13 @@ angular.mock.$LogProvider = function() {
        * @propertyOf ngMock.$log
        *
        * @description
-       * Array of logged messages.
+       * Array of messages logged using {@link ngMock.$log#warn}.
+       *
+       * @example
+       * <pre>
+       * $log.warn('Some Warning');
+       * var first = $log.warn.logs.unshift();
+       * </pre>
        */
       $log.warn.logs = [];
       /**
@@ -340,7 +352,13 @@ angular.mock.$LogProvider = function() {
        * @propertyOf ngMock.$log
        *
        * @description
-       * Array of logged messages.
+       * Array of messages logged using {@link ngMock.$log#info}.
+       *
+       * @example
+       * <pre>
+       * $log.info('Some Info');
+       * var first = $log.info.logs.unshift();
+       * </pre>
        */
       $log.info.logs = [];
       /**
@@ -349,7 +367,13 @@ angular.mock.$LogProvider = function() {
        * @propertyOf ngMock.$log
        *
        * @description
-       * Array of logged messages.
+       * Array of messages logged using {@link ngMock.$log#error}.
+       *
+       * @example
+       * <pre>
+       * $log.log('Some Error');
+       * var first = $log.error.logs.unshift();
+       * </pre>
        */
       $log.error.logs = [];
     };
@@ -628,7 +652,9 @@ angular.mock.createMockWindow = function() {
     if (setTimeoutQueue.length > 0) {
       return {
         process: function() {
-          setTimeoutQueue.shift().fn();
+          var tick = setTimeoutQueue.shift();
+          expect(tick.delay).toEqual(delay);
+          tick.fn();
         }
       };
     } else {
@@ -709,14 +735,14 @@ angular.mock.dump = function(object) {
  * @ngdoc object
  * @name ngMock.$httpBackend
  * @description
- * Fake HTTP backend implementation suitable for unit testing application that use the
+ * Fake HTTP backend implementation suitable for unit testing applications that use the
  * {@link ng.$http $http service}.
  *
- * *Note*: For fake http backend implementation suitable for end-to-end testing or backend-less
+ * *Note*: For fake HTTP backend implementation suitable for end-to-end testing or backend-less
  * development please see {@link ngMockE2E.$httpBackend e2e $httpBackend mock}.
  *
  * During unit testing, we want our unit tests to run quickly and have no external dependencies so
- * we don’t want to send {@link https://developer.mozilla.org/en/xmlhttprequest XHR} or
+ * we donâ€™t want to send {@link https://developer.mozilla.org/en/xmlhttprequest XHR} or
  * {@link http://en.wikipedia.org/wiki/JSONP JSONP} requests to a real server. All we really need is
  * to verify whether a certain request has been sent or not, or alternatively just let the
  * application make requests, respond with pre-trained responses and assert that the end result is
@@ -848,7 +874,7 @@ angular.mock.dump = function(object) {
 
 
    it('should send msg to server', function() {
-     // now you don’t care about the authentication, but
+     // now you donâ€™t care about the authentication, but
      // the controller will still send the request and
      // $httpBackend will respond without you having to
      // specify the expectation and response for this request
@@ -911,7 +937,7 @@ function createHttpBackendMock($rootScope, $delegate, $browser) {
   }
 
   // TODO(vojta): change params to: method, url, data, headers, callback
-  function $httpBackend(method, url, data, callback, headers) {
+  function $httpBackend(method, url, data, callback, headers, timeout) {
     var xhr = new MockXhr(),
         expectation = expectations[0],
         wasExpected = false;
@@ -920,6 +946,28 @@ function createHttpBackendMock($rootScope, $delegate, $browser) {
       return (angular.isString(data) || angular.isFunction(data) || data instanceof RegExp)
           ? data
           : angular.toJson(data);
+    }
+
+    function wrapResponse(wrapped) {
+      if (!$browser && timeout && timeout.then) timeout.then(handleTimeout);
+
+      return handleResponse;
+
+      function handleResponse() {
+        var response = wrapped.response(method, url, data, headers);
+        xhr.$$respHeaders = response[2];
+        callback(response[0], response[1], xhr.getAllResponseHeaders());
+      }
+
+      function handleTimeout() {
+        for (var i = 0, ii = responses.length; i < ii; i++) {
+          if (responses[i] === handleResponse) {
+            responses.splice(i, 1);
+            callback(-1, undefined, '');
+            break;
+          }
+        }
+      }
     }
 
     if (expectation && expectation.match(method, url)) {
@@ -935,11 +983,7 @@ function createHttpBackendMock($rootScope, $delegate, $browser) {
       expectations.shift();
 
       if (expectation.response) {
-        responses.push(function() {
-          var response = expectation.response(method, url, data, headers);
-          xhr.$$respHeaders = response[2];
-          callback(response[0], response[1], xhr.getAllResponseHeaders());
-        });
+        responses.push(wrapResponse(expectation));
         return;
       }
       wasExpected = true;
@@ -950,13 +994,9 @@ function createHttpBackendMock($rootScope, $delegate, $browser) {
       if (definition.match(method, url, data, headers || {})) {
         if (definition.response) {
           // if $browser specified, we do auto flush all requests
-          ($browser ? $browser.defer : responsesPush)(function() {
-            var response = definition.response(method, url, data, headers);
-            xhr.$$respHeaders = response[2];
-            callback(response[0], response[1], xhr.getAllResponseHeaders());
-          });
+          ($browser ? $browser.defer : responsesPush)(wrapResponse(definition));
         } else if (definition.passThrough) {
-          $delegate(method, url, data, callback, headers);
+          $delegate(method, url, data, callback, headers, timeout);
         } else throw Error('No response defined !');
         return;
       }
@@ -982,8 +1022,8 @@ function createHttpBackendMock($rootScope, $delegate, $browser) {
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
    *   request is handled.
    *
-   *  - respond – `{function([status,] data[, headers])|function(function(method, url, data, headers)}`
-   *    – The respond method takes a set of static data to be returned or a function that can return
+   *  - respond â€“ `{function([status,] data[, headers])|function(function(method, url, data, headers)}`
+   *    â€“ The respond method takes a set of static data to be returned or a function that can return
    *    an array containing response status (number), response data (string) and response headers
    *    (Object).
    */
@@ -1101,8 +1141,8 @@ function createHttpBackendMock($rootScope, $delegate, $browser) {
    * @returns {requestHandler} Returns an object with `respond` method that control how a matched
    *  request is handled.
    *
-   *  - respond – `{function([status,] data[, headers])|function(function(method, url, data, headers)}`
-   *    – The respond method takes a set of static data to be returned or a function that can return
+   *  - respond â€“ `{function([status,] data[, headers])|function(function(method, url, data, headers)}`
+   *    â€“ The respond method takes a set of static data to be returned or a function that can return
    *    an array containing response status (number), response data (string) and response headers
    *    (Object).
    */
@@ -1411,7 +1451,7 @@ function MockXhr() {
  *
  * This service is just a simple decorator for {@link ng.$timeout $timeout} service
  * that adds a "flush" and "verifyNoPendingTasks" methods.
- */ 
+ */
 
 angular.mock.$TimeoutDecorator = function($delegate, $browser) {
 
@@ -1557,11 +1597,11 @@ angular.module('ngMockE2E', ['ng']).config(function($provide) {
  * @returns {requestHandler} Returns an object with `respond` and `passThrough` methods that
  *   control how a matched request is handled.
  *
- *  - respond – `{function([status,] data[, headers])|function(function(method, url, data, headers)}`
- *    – The respond method takes a set of static data to be returned or a function that can return
+ *  - respond â€“ `{function([status,] data[, headers])|function(function(method, url, data, headers)}`
+ *    â€“ The respond method takes a set of static data to be returned or a function that can return
  *    an array containing response status (number), response data (string) and response headers
  *    (Object).
- *  - passThrough – `{function()}` – Any request matching a backend definition with `passThrough`
+ *  - passThrough â€“ `{function()}` â€“ Any request matching a backend definition with `passThrough`
  *    handler, will be pass through to the real backend (an XHR request will be made to the
  *    server.
  */
