@@ -12,7 +12,8 @@
     "grunt-ngmin": "~0.0.2",
     "protractor": "~0.6.1",
     "grunt": "~0.4.1",
-    "grunt-concat-sourcemap": "~0.3.0"
+    "grunt-concat-sourcemap": "~0.3.0",
+    "lineman": "~0.11.6"
   },
   "engines": {
     "node": "~>0.10.5",
