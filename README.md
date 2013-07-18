@@ -1,6 +1,8 @@
 # A Lineman JS Template using Angular
 
-This provides the basic configuration needed to get an Angular app up and running with lineman. It includes the following features:
+This is a project template for Angular JS applications using [Lineman](http://www.linemanjs.com).
+
+It includes the following features:
 
 1. Template Precompilation into Angulars $templateCache using `grunt-angular-templates`
 2. A basic login, logout service bound to sample routes inside `config/server.js`
@@ -17,10 +19,9 @@ This provides the basic configuration needed to get an Angular app up and runnin
 
 1. `git clone https://github.com/davemo/lineman-angular-template.git my-lineman-app`
 2. `cd my-lineman-app`
-3. `npm install -g lineman`
-4. `npm install`
-5. `lineman run`
-6. open your web browser to localhost:8000
+3. `npm install`
+4. `lineman run`
+5. open your web browser to localhost:8000
 
 # Running Tests
 
