@@ -63,7 +63,7 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
       sourcesContent: true
     },
     js: {
-      src: ["<banner:meta.banner>", "<%= files.js.vendor %>", "<%= files.coffee.generated %>", "<%= files.js.app %>", "<%= files.ngtemplates.dest %>"],
+      src: ["<%= files.js.vendor %>", "<%= files.js.app %>", "<%= files.coffee.generated %>", "<%= files.ngtemplates.dest %>"],
       dest: "<%= files.js.concatenated %>"
     },
     spec: {

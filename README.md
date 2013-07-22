@@ -40,4 +40,16 @@ To run the end-to-end tests:
 4. `lineman run` from 1 terminal window
 5. `./node_modules/protractor/bin/protractor config/spec-e2e.js` from another terminal window
 
+# Defining your apps angular.module in CoffeeScript
+
+If you are using Coffeescript to define the angular.module for your app, you will need to swap the concat order in `config/application.js` such that coffeescript files are included _before_ javascript, here's a sample config. (If you are using JavaScript for defining the angular.module the default concat order is fine).
+
+```javascript
+js: {
+  // if using coffeescript and your angular.module is defined in a .coffee file, files.coffee.generated comes first
+  src: ["<%= files.js.vendor %>", "<%= files.coffee.generated %>", "<%= files.js.app %>", "<%= files.ngtemplates.dest %>"],
+  dest: "<%= files.js.concatenated %>"
+},
+```
+
 Hopefully this helps you get up and running with AngularJS!
