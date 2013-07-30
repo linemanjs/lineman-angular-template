@@ -19,7 +19,7 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
     "grunt-ngmin"
   ],
 
-  // we don't have handlebars templates or coffeescript by default
+  // we don't use the lineman default concat, handlebars, and jst tasks by default
   removeTasks: {
     common: ["concat", "handlebars", "jst"]
   },
