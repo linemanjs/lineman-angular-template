@@ -10,7 +10,6 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend("application
   server:
     pushState: false
 
-
   # configure lineman to load additional tasks form npm
   loadNpmTasks: ["grunt-concat-sourcemap", "grunt-contrib-copy"]
 
@@ -25,7 +24,7 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend("application
   # for copying batmans view templates into the lineman directories
   copy:
     batman_views:
-      files: [{expand: true, src: ['app/views/**'], dest: 'generated/'}]
+      files: [{expand: true, src: ['<%= files.batman_views %>'], dest: 'generated/'}]
 
   # generates a sourcemap for js, specs, and css with inlined sources
   # grunt-angular-templates expects that a module already be defined to inject into
@@ -51,7 +50,7 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend("application
   # watch target concat with concat_sourcemap
   watch:
     batman_views:
-      files: ["app/views/**/*.html"]
+      files: ["<%= files.batman_views %>"]
       tasks: ["copy:batman_views"]
 
     js:

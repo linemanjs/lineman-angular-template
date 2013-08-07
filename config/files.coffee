@@ -17,6 +17,8 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend("files",
   coffee:
     app: ["app/js/app.coffee", "app/js/**/*.coffee"]
 
+  batman_views: ["app/views/**/*.html"]
+
   less:
     compile:
       options:
