@@ -50,6 +50,10 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend("application
   # configures grunt-watch-nospawn to listen for changes and swaps the
   # watch target concat with concat_sourcemap
   watch:
+    batman_views:
+      files: ["app/views/**/*.html"]
+      tasks: ["copy:batman_views"]
+
     js:
       files: ["<%= files.js.vendor %>"]
       tasks: ["concat_sourcemap:js"]
