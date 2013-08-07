@@ -19,12 +19,16 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend("application
 
   # swaps concat_sourcemap in place of vanilla concat
   appendTasks:
-    common: ["concat_sourcemap", "copy:batman_views"]
+    dev:    ["copy:batman_views_dev"]
+    common: ["concat_sourcemap"]
+    dist:   ["copy:batman_views_dist"]
 
   # for copying batmans view templates into the lineman directories
   copy:
-    batman_views:
+    batman_views_dev:
       files: [{expand: true, src: ['<%= files.batman_views %>'], dest: 'generated/'}]
+    batman_views_dist:
+      files: [{expand: true, src: ['<%= files.batman_views %>'], dest: 'dist/'}]
 
   # generates a sourcemap for js, specs, and css with inlined sources
   # grunt-angular-templates expects that a module already be defined to inject into
@@ -51,7 +55,7 @@ module.exports = require(process.env["LINEMAN_MAIN"]).config.extend("application
   watch:
     batman_views:
       files: ["<%= files.batman_views %>"]
-      tasks: ["copy:batman_views"]
+      tasks: ["copy:batman_views_dev"]
 
     js:
       files: ["<%= files.js.vendor %>"]
