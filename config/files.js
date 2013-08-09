@@ -20,11 +20,11 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('files', {
     vendor: [
       "vendor/js/angular.js",
       "vendor/js/**/*.js"
-    ],
-    app: [
-      "app/js/app.js",
-      "app/js/**/*.js"
     ]
+  },
+
+  coffee: {
+    app: ["app/js/app.coffee", "app/js/**/*.coffee"]
   },
 
   less: {

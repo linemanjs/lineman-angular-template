@@ -55,6 +55,25 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
     }
   },
 
+  coffee: {
+    compile: {
+      options: {
+        sourceMap: true,
+        inline: true
+      },
+      files: [
+        {
+          cwd: "app/js/",
+          expand: true,
+          src: ["**/*.coffee"],
+          dest: "generated/js/",
+          ext: ".coffee.js",
+          flatten: true
+        }
+      ]
+    }
+  },
+
   // generates a sourcemap for js, specs, and css with inlined sources
   // grunt-angular-templates expects that a module already be defined to inject into
   // this configuration orders the template inclusion _after_ the app level module
@@ -63,7 +82,7 @@ module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application
       sourcesContent: true
     },
     js: {
-      src: ["<%= files.js.vendor %>", "<%= files.js.app %>", "<%= files.coffee.generated %>", "<%= files.ngtemplates.dest %>"],
+      src: ["<%= files.js.vendor %>", "generated/js/**/*.coffee.js", "<%= files.ngtemplates.dest %>"],
       dest: "<%= files.js.concatenated %>"
     },
     spec: {
