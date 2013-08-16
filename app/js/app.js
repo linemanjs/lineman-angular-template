@@ -1,10 +1,31 @@
-angular.module("app", ["ngResource", "ngRoute"]).run(function($rootScope) {
-  // adds some basic utilities to the $rootScope for debugging purposes
-  $rootScope.log = function(thing) {
-    console.log(thing);
-  };
+angular.module("app", ["ngRoute", "some", "other"]);
 
-  $rootScope.alert = function(thing) {
-    alert(thing);
+angular.module("some", []).factory('greet', function(name) {
+  return function() {
+    return 'Hi ' + name + '!';
   };
 });
+
+angular.module("other", []).value('name', 'example');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
