@@ -13,7 +13,7 @@
     "protractor": "~0.7.0",
     "grunt": "~0.4.1",
     "grunt-concat-sourcemap": "~0.3.0",
-    "lineman": "~0.11.6"
+    "lineman": ">=0.11.6"
   },
   "engines": {
     "node": "~>0.10.5",
