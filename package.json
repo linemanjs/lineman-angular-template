@@ -14,7 +14,8 @@
     "jasmine-given": "~2.1.0",
     "grunt": "~0.4.1",
     "grunt-concat-sourcemap": "~0.3.0",
-    "lineman": ">=0.11.6"
+    "lineman": ">=0.11.6",
+    "coffee-script": "~1.6.3"
   },
   "engines": {
     "node": "~>0.10.5",
