@@ -33,7 +33,7 @@ exports.config = {
   // Spec patterns are relative to the current working directly when
   // protractor is called.
   specs: [
-    'spec-e2e/*_spec.js',
+    '../spec-e2e/**/*spec.{js,coffee}'
   ],
 
   // ----- Capabilities to be passed to the webdriver instance.
@@ -42,7 +42,7 @@ exports.config = {
   // and
   // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
   capabilities: {
-    'browserName': 'phantomjs'
+    'browserName': 'firefox'
   },
 
   // A base URL for your application under test. Calls to protractor.get()
