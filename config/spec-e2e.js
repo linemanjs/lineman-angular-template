@@ -17,7 +17,7 @@ exports.config = {
   // find chromedriver. This will be passed to the selenium jar as
   // the system property webdriver.chrome.driver. If null, selenium will
   // attempt to find chromedriver using PATH.
-  chromeDriver: '/usr/local/opt/chromedriver/bin/chromedriver',
+  // chromeDriver: '/usr/local/opt/chromedriver/bin/chromedriver',
   // Additional command line options to pass to selenium. For example,
   // if  you need to change the browser timeout, use
   // seleniumArgs: [-browserTimeout=60],

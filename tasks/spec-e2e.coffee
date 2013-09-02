@@ -9,22 +9,7 @@ module.exports = (grunt) ->
   spawn = require("child_process").spawn
 
   grunt.registerTask "spec-e2e", "run specs in ci mode", (target) ->
-    protractorRunnerPath = "#{process.cwd()}/node_modules/.bin/protractor"
-    try
-      done = @async()
-      args = [path.resolve("#{process.cwd()}/config/spec-e2e.js")]
-      child = spawn(protractorRunnerPath, args)
-      output = ""
-      child.stdout.on "data", (chunk) ->
-        process.stdout.write(chunk)
-        output += chunk
-
-      child.on "exit", (code, signal) ->
-        if code != 0
-          grunt.warn("Spec execution appears to have failed.")
-          done(false)
-        else
-          done()
-    catch e
-      grunt.fatal(e)
-      throw e
+    require('coffee-script')
+    process.argv = ["doesnt", "matter", "#{process.cwd()}/config/spec-e2e.js"]
+    done = @async()
+    require("#{process.cwd()}/node_modules/protractor/lib/cli")
