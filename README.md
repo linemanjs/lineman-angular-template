@@ -36,7 +36,7 @@ To run the end-to-end tests:
 
 1. `npm install protractor`
 2. `brew install selenium-server-standalone`
-3. `brew install chromedriver`
+3. `brew install phantomjs`
 4. `lineman run` from 1 terminal window
 5. `lineman grunt spec-e2e` from another terminal window
 
