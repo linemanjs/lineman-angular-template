@@ -1,6 +1,6 @@
 protractor = require("protractor")
 require "protractor/jasminewd"
-require 'jasmine-given-actual'
+require 'jasmine-given'
 
 describe "my angular app", ->
   ptor = protractor.getInstance()
