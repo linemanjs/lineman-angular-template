@@ -17,7 +17,7 @@ exports.config = {
   // find chromedriver. This will be passed to the selenium jar as
   // the system property webdriver.chrome.driver. If null, selenium will
   // attempt to find chromedriver using PATH.
-  chromeDriver: '/usr/local/opt/chromedriver/bin/chromedriver',
+  // chromeDriver: '/usr/local/opt/chromedriver/bin/chromedriver',
   // Additional command line options to pass to selenium. For example,
   // if  you need to change the browser timeout, use
   // seleniumArgs: [-browserTimeout=60],
@@ -33,7 +33,7 @@ exports.config = {
   // Spec patterns are relative to the current working directly when
   // protractor is called.
   specs: [
-    'spec-e2e/*_spec.js',
+    '../spec-e2e/**/*spec.{js,coffee}'
   ],
 
   // ----- Capabilities to be passed to the webdriver instance.
@@ -42,7 +42,7 @@ exports.config = {
   // and
   // https://code.google.com/p/selenium/source/browse/javascript/webdriver/capabilities.js
   capabilities: {
-    'browserName': 'chrome'
+    'browserName': 'firefox'
   },
 
   // A base URL for your application under test. Calls to protractor.get()
