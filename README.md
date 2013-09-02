@@ -36,9 +36,9 @@ To run the end-to-end tests:
 
 1. `npm install protractor`
 2. `brew install selenium-server-standalone`
-3. `brew install chromedriver`
+3. Make sure you have firefox installed.
 4. `lineman run` from 1 terminal window
-5. `./node_modules/protractor/bin/protractor config/spec-e2e.js` from another terminal window
+5. `lineman grunt spec-e2e` from another terminal window
 
 # Defining your apps angular.module in CoffeeScript
 
