@@ -19,7 +19,7 @@ It includes the following features:
 
 1. `git clone https://github.com/davemo/lineman-angular-template.git my-lineman-app`
 2. `cd my-lineman-app`
-3. `npm install`
+3. `sudo npm install -g lineman`
 4. `lineman run`
 5. open your web browser to localhost:8000
 
