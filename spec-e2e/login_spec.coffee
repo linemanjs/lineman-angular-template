@@ -1,5 +1,3 @@
-protractor = require("protractor")
-require "protractor/jasminewd"
 require 'jasmine-given'
 
 describe "my angular app", ->
