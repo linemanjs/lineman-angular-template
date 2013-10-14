@@ -1,5 +1,7 @@
 # A Lineman JS Template using Angular
 
+[![Build Status](https://travis-ci.org/testdouble/lineman-angular-template.png?branch=master)](https://travis-ci.org/testdouble/lineman-angular-template)
+
 This is a project template for Angular JS applications using [Lineman](http://www.linemanjs.com).
 
 It includes the following features:
