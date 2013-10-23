@@ -28,7 +28,7 @@ It includes the following features:
 
 # Running Tests
 
-This template was used as the basis of my [Testing Strategies for Angular JS](http://www.youtube.com/watch?v=UYVcY9EJcRs) screencast, and contains all the tests we wrote in the screencast and a few more!
+This template was used as the basis of @davemo's [Testing Strategies for Angular JS](http://www.youtube.com/watch?v=UYVcY9EJcRs) screencast, and contains all the tests we wrote in the screencast and a few more!
 
 To run the unit tests:
 
