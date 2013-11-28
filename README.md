@@ -39,9 +39,19 @@ To run the end-to-end tests:
 
 1. `npm install protractor`
 2. `brew install selenium-server-standalone`
-3. Make sure you have firefox installed.
+3. Make sure you have chrome installed.
 4. `lineman run` from 1 terminal window
 5. `lineman grunt spec-e2e` from another terminal window
+
+  Troubleshooting:
+
+    If you see this error: Warning: there's no selenium server jar at the specified location,
+    you may need to change the selenium-server-standalone jar version in config/spec-e2e.js
+    to the actual you see in /user/local/opt/selenium-server-standalone.
+
+    If you see this error: Fatal error: The path to the driver executable must be set by the
+    webdriver.chrome.driver system property, you may need to download the chromedriver
+    (https://code.google.com/p/selenium/wiki/ChromeDriver) and place it in /usr/local/bin (mac).
 
 # Defining your apps angular.module in CoffeeScript
 
