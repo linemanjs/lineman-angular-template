@@ -13,19 +13,19 @@ describe('my angular app', function () {
 
     it('should show me a list of books', function() {
       ptor.findElement(
-        protractor.By.repeater('book in books').row(1)).
+        protractor.By.repeater('book in books').row(0)).
         getText().then(function(text) {
           expect(text).toEqual('Great Expectations by Dickens');
         });
 
       ptor.findElement(
-        protractor.By.repeater('book in books').row(2)).
+        protractor.By.repeater('book in books').row(1)).
         getText().then(function(text) {
           expect(text).toEqual('Foundation Series by Asimov');
         });
 
       ptor.findElement(
-        protractor.By.repeater('book in books').row(3)).
+        protractor.By.repeater('book in books').row(2)).
         getText().then(function(text) {
           expect(text).toEqual('Treasure Island by Stephenson');
         });
