@@ -1,6 +1,6 @@
 /**
- * @license AngularJS v1.2.1
- * (c) 2010-2012 Google, Inc. http://angularjs.org
+ * @license AngularJS v1.2.4
+ * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
 (function(window, angular, undefined) {'use strict';
@@ -94,30 +94,30 @@ function lookupDottedPath(obj, path) {
  *
  *   Where:
  *
- *   - **`action`** â€“ {string} â€“ The name of action. This name becomes the name of the method on
+ *   - **`action`** – {string} – The name of action. This name becomes the name of the method on
  *     your resource object.
- *   - **`method`** â€“ {string} â€“ HTTP request method. Valid methods are: `GET`, `POST`, `PUT`,
+ *   - **`method`** – {string} – HTTP request method. Valid methods are: `GET`, `POST`, `PUT`,
  *     `DELETE`, and `JSONP`.
- *   - **`params`** â€“ {Object=} â€“ Optional set of pre-bound parameters for this action. If any of
+ *   - **`params`** – {Object=} – Optional set of pre-bound parameters for this action. If any of
  *     the parameter value is a function, it will be executed every time when a param value needs to
  *     be obtained for a request (unless the param was overridden).
- *   - **`url`** â€“ {string} â€“ action specific `url` override. The url templating is supported just
+ *   - **`url`** – {string} – action specific `url` override. The url templating is supported just
  *     like for the resource-level urls.
- *   - **`isArray`** â€“ {boolean=} â€“ If true then the returned object for this action is an array,
+ *   - **`isArray`** – {boolean=} – If true then the returned object for this action is an array,
  *     see `returns` section.
- *   - **`transformRequest`** â€“
- *     `{function(data, headersGetter)|Array.<function(data, headersGetter)>}` â€“
+ *   - **`transformRequest`** –
+ *     `{function(data, headersGetter)|Array.<function(data, headersGetter)>}` –
  *     transform function or an array of such functions. The transform function takes the http
  *     request body and headers and returns its transformed (typically serialized) version.
- *   - **`transformResponse`** â€“
- *     `{function(data, headersGetter)|Array.<function(data, headersGetter)>}` â€“
+ *   - **`transformResponse`** –
+ *     `{function(data, headersGetter)|Array.<function(data, headersGetter)>}` –
  *     transform function or an array of such functions. The transform function takes the http
  *     response body and headers and returns its transformed (typically deserialized) version.
- *   - **`cache`** â€“ `{boolean|Cache}` â€“ If true, a default $http cache will be used to cache the
+ *   - **`cache`** – `{boolean|Cache}` – If true, a default $http cache will be used to cache the
  *     GET request, otherwise if a cache instance built with
  *     {@link ng.$cacheFactory $cacheFactory}, this cache will be used for
  *     caching.
- *   - **`timeout`** â€“ `{number|Promise}` â€“ timeout in milliseconds, or {@link ng.$q promise} that
+ *   - **`timeout`** – `{number|Promise}` – timeout in milliseconds, or {@link ng.$q promise} that
  *     should abort the request when resolved.
  *   - **`withCredentials`** - `{boolean}` - whether to set the `withCredentials` flag on the
  *     XHR object. See {@link https://developer.mozilla.org/en/http_access_control#section_5
@@ -444,7 +444,7 @@ angular.module('ngResource', ['ng']).
           }
           /* jshint +W086 */ /* (purposefully fall through case statements) */
 
-          var isInstanceCall = data instanceof Resource;
+          var isInstanceCall = this instanceof Resource;
           var value = isInstanceCall ? data : (action.isArray ? [] : new Resource(data));
           var httpConfig = {};
           var responseInterceptor = action.interceptor && action.interceptor.response ||
@@ -527,7 +527,7 @@ angular.module('ngResource', ['ng']).
           if (isFunction(params)) {
             error = success; success = params; params = {};
           }
-          var result = Resource[name](params, this, success, error);
+          var result = Resource[name].call(this, params, this, success, error);
           return result.$promise || result;
         };
       });

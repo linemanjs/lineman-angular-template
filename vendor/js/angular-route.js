@@ -1,6 +1,6 @@
 /**
- * @license AngularJS v1.2.1
- * (c) 2010-2012 Google, Inc. http://angularjs.org
+ * @license AngularJS v1.2.4
+ * (c) 2010-2014 Google, Inc. http://angularjs.org
  * License: MIT
  */
 (function(window, angular, undefined) {'use strict';
@@ -14,6 +14,9 @@
  *
  * The `ngRoute` module provides routing and deeplinking services and directives for angular apps.
  *
+ * ## Example
+ * See {@link ngRoute.$route#example $route} for an example of configuring and using `ngRoute`.
+ * 
  * {@installModule route}
  *
  * <div doc-module-components="ngRoute"></div>
@@ -29,8 +32,12 @@ var ngRouteModule = angular.module('ngRoute', ['ng']).
  *
  * @description
  *
- * Used for configuring routes. See {@link ngRoute.$route $route} for an example.
+ * Used for configuring routes.
+ * 
+ * ## Example
+ * See {@link ngRoute.$route#example $route} for an example of configuring and using `ngRoute`.
  *
+ * ## Dependencies
  * Requires the {@link ngRoute `ngRoute`} module to be installed.
  */
 function $RouteProvider(){
@@ -70,12 +77,12 @@ function $RouteProvider(){
    *
    *    Object properties:
    *
-   *    - `controller` â€“ `{(string|function()=}` â€“ Controller fn that should be associated with
+   *    - `controller` – `{(string|function()=}` – Controller fn that should be associated with
    *      newly created scope or the name of a {@link angular.Module#controller registered
    *      controller} if passed as a string.
-   *    - `controllerAs` â€“ `{string=}` â€“ A controller alias name. If present the controller will be
+   *    - `controllerAs` – `{string=}` – A controller alias name. If present the controller will be
    *      published to scope under the `controllerAs` name.
-   *    - `template` â€“ `{string=|function()=}` â€“ html template as a string or a function that
+   *    - `template` – `{string=|function()=}` – html template as a string or a function that
    *      returns an html template as a string which should be used by {@link
    *      ngRoute.directive:ngView ngView} or {@link ng.directive:ngInclude ngInclude} directives.
    *      This property takes precedence over `templateUrl`.
@@ -85,7 +92,7 @@ function $RouteProvider(){
    *      - `{Array.<Object>}` - route parameters extracted from the current
    *        `$location.path()` by applying the current route
    *
-   *    - `templateUrl` â€“ `{string=|function()=}` â€“ path or function that returns a path to an html
+   *    - `templateUrl` – `{string=|function()=}` – path or function that returns a path to an html
    *      template that should be used by {@link ngRoute.directive:ngView ngView}.
    *
    *      If `templateUrl` is a function, it will be called with the following parameters:
@@ -103,7 +110,7 @@ function $RouteProvider(){
    *      {@link ngRoute.$route#$routeChangeError $routeChangeError} event is fired. The map object
    *      is:
    *
-   *      - `key` â€“ `{string}`: a name of a dependency to be injected into the controller.
+   *      - `key` – `{string}`: a name of a dependency to be injected into the controller.
    *      - `factory` - `{string|function}`: If `string` then it is an alias for a service.
    *        Otherwise if function, then it is {@link api/AUTO.$injector#invoke injected}
    *        and the return value is treated as the dependency. If the result is a promise, it is
@@ -111,7 +118,7 @@ function $RouteProvider(){
    *        `ngRoute.$routeParams` will still refer to the previous route within these resolve
    *        functions.  Use `$route.current.params` to access the new route parameters, instead.
    *
-   *    - `redirectTo` â€“ {(string|function())=} â€“ value to update
+   *    - `redirectTo` – {(string|function())=} – value to update
    *      {@link ng.$location $location} path with and trigger route redirection.
    *
    *      If `redirectTo` is a function, it will be called with the following parameters:
@@ -835,37 +842,43 @@ function ngViewFactory(   $route,   $anchorScroll,   $compile,   $controller,   
 
           if (template) {
             var newScope = scope.$new();
-            $transclude(newScope, function(clone) {
-              clone.html(template);
-              $animate.enter(clone, null, currentElement || $element, function onNgViewEnter () {
-                if (angular.isDefined(autoScrollExp)
-                  && (!autoScrollExp || scope.$eval(autoScrollExp))) {
-                  $anchorScroll();
-                }
-              });
 
-              cleanupLastView();
-
-              var link = $compile(clone.contents()),
-                  current = $route.current;
-
-              currentScope = current.scope = newScope;
-              currentElement = clone;
-
-              if (current.controller) {
-                locals.$scope = currentScope;
-                var controller = $controller(current.controller, locals);
-                if (current.controllerAs) {
-                  currentScope[current.controllerAs] = controller;
-                }
-                clone.data('$ngControllerController', controller);
-                clone.children().data('$ngControllerController', controller);
+            // Note: This will also link all children of ng-view that were contained in the original
+            // html. If that content contains controllers, ... they could pollute/change the scope.
+            // However, using ng-view on an element with additional content does not make sense...
+            // Note: We can't remove them in the cloneAttchFn of $transclude as that
+            // function is called before linking the content, which would apply child
+            // directives to non existing elements.
+            var clone = $transclude(newScope, angular.noop);
+            clone.html(template);
+            $animate.enter(clone, null, currentElement || $element, function onNgViewEnter () {
+              if (angular.isDefined(autoScrollExp)
+                && (!autoScrollExp || scope.$eval(autoScrollExp))) {
+                $anchorScroll();
               }
-
-              link(currentScope);
-              currentScope.$emit('$viewContentLoaded');
-              currentScope.$eval(onloadExp);
             });
+
+            cleanupLastView();
+
+            var link = $compile(clone.contents()),
+                current = $route.current;
+
+            currentScope = current.scope = newScope;
+            currentElement = clone;
+
+            if (current.controller) {
+              locals.$scope = currentScope;
+              var controller = $controller(current.controller, locals);
+              if (current.controllerAs) {
+                currentScope[current.controllerAs] = controller;
+              }
+              clone.data('$ngControllerController', controller);
+              clone.children().data('$ngControllerController', controller);
+            }
+
+            link(currentScope);
+            currentScope.$emit('$viewContentLoaded');
+            currentScope.$eval(onloadExp);
           } else {
             cleanupLastView();
           }
