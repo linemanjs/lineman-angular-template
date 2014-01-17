@@ -7,12 +7,12 @@
     "name": "David Mosher",
     "company": "DAVEMO Consulting"
   },
-  "dependencies": {
+  "devDependencies": {
     "protractor": ">=0.8.0",
     "jasmine-given": "~2.1.0",
     "grunt": "~0.4.1",
-    "lineman": ">=0.19.2",
-    "lineman-angular": ">=0.0.2",
+    "lineman": ">= 0.23.0",
+    "lineman-angular": ">= 0.1.0",
     "coffee-script": "~1.6.3"
   },
   "engines": {
