@@ -4,19 +4,18 @@
   "version": "0.0.1",
   "private": true,
   "author": {
-    "name": "David Mosher",
-    "company": "DAVEMO Consulting"
+    "name": "John Doe",
+    "company": "ACME, Inc."
   },
   "devDependencies": {
     "protractor": ">=0.8.0",
     "jasmine-given": "~2.1.0",
-    "grunt": "~0.4.1",
     "lineman": ">= 0.23.0",
     "lineman-angular": ">= 0.1.1",
     "coffee-script": "~1.6.3"
   },
-  "engines": {
-    "node": "~>0.10.5",
-    "npm": "~>1.2.18"
+  "scripts": {
+    "start": "lineman run",
+    "test": "lineman spec-ci"
   }
 }
