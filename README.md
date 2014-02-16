@@ -47,7 +47,7 @@ To run the end-to-end tests:
 
     If you see this error: Warning: there's no selenium server jar at the specified location,
     you may need to change the selenium-server-standalone jar version in config/spec-e2e.js
-    to the actual you see in /user/local/opt/selenium-server-standalone.
+    to the actual you see in /usr/local/opt/selenium-server-standalone (brew users may have a libexec directory).
 
     If you see this error: Fatal error: The path to the driver executable must be set by the
     webdriver.chrome.driver system property, you may need to download the chromedriver
