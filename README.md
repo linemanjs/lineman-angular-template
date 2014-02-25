@@ -14,12 +14,12 @@ It includes the following features:
 6. A working, bound login form (username/password don't matter, but are required)
 7. Configured [grunt-ngmin](https://github.com/btford/grunt-ngmin) so you don't have to fully qualify angular dependencies.
 8. Auto generated [sourcemaps](http://www.html5rocks.com/en/tutorials/developertools/sourcemaps/) with inlined sources via [grunt-concat-sourcemap](https://github.com/kozy4324/grunt-concat-sourcemap) (you'll need to [enable sourcemaps](http://cl.ly/image/1d0X2z2u1E3b) in Firefox/Chrome to see this)
-9. [Unit Tests](https://github.com/davemo/lineman-angular-template/tree/master/spec) and [End-to-End Tests](https://github.com/davemo/lineman-angular-template/tree/master/spec-e2e)
+9. [Unit Tests](https://github.com/linemanjs/lineman-angular-template/tree/master/spec) and [End-to-End Tests](https://github.com/linemanjs/lineman-angular-template/tree/master/spec-e2e)
 10. Configuration to run [Protractor](https://github.com/juliemr/protractor) for End-to-End Tests
 
 # Instructions
 
-1. `git clone https://github.com/davemo/lineman-angular-template.git my-lineman-app`
+1. `git clone https://github.com/linemanjs/lineman-angular-template.git my-lineman-app`
 2. `cd my-lineman-app`
 3. `sudo npm install -g lineman`
 4. `npm install`
