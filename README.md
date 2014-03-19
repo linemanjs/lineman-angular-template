@@ -55,30 +55,27 @@ To run the end-to-end tests:
 
 # Defining your apps angular.module in CoffeeScript
 
-If you are using Coffeescript to define the angular.module for your app, you will need to swap the concat order in `config/application.js` such that coffeescript files are included _before_ javascript, here's a sample config. (If you are using JavaScript for defining the angular.module the default concat order is fine).
+If you are using Coffeescript to define the angular.module for your app, you will need to swap the concat order in `config/application.js` such that coffeescript files are included _before_ javascript. (If you are using JavaScript for defining the angular.module the default concat order is fine).
 
-Replace `config/application.js` with the following if you want to define your app module in coffeescript:
+Add the following `concat_sourcemap` block to `config/application.js` if you want to define your app module in coffeescript:
 
 ```javascript
-/* Exports an object that defines
- *  all of the configuration needed by the projects'
- *  depended-on grunt tasks.
- *
- * You can find the parent object in: node_modules/lineman/config/application.coffee
- */
+module.exports = function(lineman) {
+  return {
 
-module.exports = require(process.env['LINEMAN_MAIN']).config.extend('application', {
-  concat_sourcemap: {
-    js: {
-      src: [
-        "<%= files.js.vendor %>",
-        "<%= files.coffee.generated %>",
-        "<%= files.js.app %>",
-        "<%= files.ngtemplates.dest %>"
-      ]
+    concat_sourcemap: {
+      js: {
+        src: [
+          "<%= files.js.vendor %>",
+          "<%= files.coffee.generated %>",
+          "<%= files.js.app %>",
+          "<%= files.ngtemplates.dest %>"
+        ]
+      }
     }
-  }
-});
+
+  };
+};
 ```
 
 Hopefully this helps you get up and running with AngularJS!
