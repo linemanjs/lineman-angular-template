@@ -37,11 +37,10 @@ To run the unit tests:
 
 To run the end-to-end tests:
 
-1. `npm install protractor`
-2. `brew install selenium-server-standalone`
-3. Make sure you have chrome installed.
-4. `lineman run` from 1 terminal window
-5. `lineman grunt spec-e2e` from another terminal window
+1. `./node_modules/protractor/bin/webdriver-manager update`
+2. Make sure you have chrome installed.
+3. `lineman run` from 1 terminal window
+4. `lineman grunt spec-e2e` from another terminal window
 
   Troubleshooting:
 
