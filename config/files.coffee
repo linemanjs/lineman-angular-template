@@ -9,9 +9,10 @@ module.exports = (lineman) ->
       "vendor/js/**/*.js"
     ]
 
+  coffee:
     app: [
-      "app/js/app.js"
-      "app/js/**/*.js"
+      "app/js/app.coffee"
+      "app/js/**/*.coffee"
     ]
 
   css:
