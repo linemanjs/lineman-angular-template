@@ -13,7 +13,8 @@
     "lineman": ">= 0.28.0",
     "lineman-angular": ">= 0.2.0",
     "lineman-less": "0.0.1",
-    "coffee-script": "~1.6.3"
+    "coffee-script": "~1.6.3",
+    "lineman-bower": "0.0.3"
   },
   "scripts": {
     "start": "lineman run",
