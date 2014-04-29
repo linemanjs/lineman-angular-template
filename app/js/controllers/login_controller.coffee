@@ -6,12 +6,12 @@ app.classy.controller
   inject: ['$scope', '$location', 'AuthenticationService']
 
   init: ->
-    @credentials =
+    @$.credentials =
       username: ""
       password: ""
 
   login: ->
-    @AuthenticationService.login(@credentials).success(@_redirect)
+    @AuthenticationService.login(@$.credentials).success(@_redirect)
 
   _redirect: ->
     @$location.path '/home'
