@@ -16,7 +16,6 @@
     "tests"
   ],
   "dependencies": {
-    "angular-classy": "~0.4.1",
     "angular-resource": "~1.2.16",
     "angular-ui-router": "~0.2.10",
     "foundation": "~5.2.2",
