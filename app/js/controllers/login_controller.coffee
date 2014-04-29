@@ -7,8 +7,8 @@ app.classy.controller
 
   init: ->
     @$.credentials =
-      username: ""
-      password: ""
+      username: ''
+      password: ''
 
   login: ->
     @AuthenticationService.login(@$.credentials).success(@_redirect)
