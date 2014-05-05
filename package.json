@@ -8,8 +8,8 @@
     "company": "ACME, Inc."
   },
   "devDependencies": {
-    "protractor": ">=0.8.0",
-    "jasmine-given": "~2.1.0",
+    "protractor": "~0.22.0",
+    "jasmine-given": "~2.6.0",
     "lineman": ">= 0.28.0",
     "lineman-angular": ">= 0.2.0",
     "lineman-less": "0.0.1",
