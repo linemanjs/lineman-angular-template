@@ -1,34 +1,19 @@
-var protractor = require('protractor');
-require('protractor/jasminewd');
-
 describe('my angular app', function () {
-  var ptor;
-
   describe('visiting the books page', function () {
-    ptor = protractor.getInstance();
 
     beforeEach(function () {
-      ptor.get('/list-of-books');
+      browser.get('/list-of-books');
     });
 
     it('should show me a list of books', function() {
-      ptor.findElement(
-        protractor.By.repeater('book in books').row(0)).
-        getText().then(function(text) {
-          expect(text).toEqual('Great Expectations by Dickens');
-        });
+      var row1Text = element(by.repeater('book in books').row(0)).getText()
+      expect(row1Text).toEqual('Great Expectations by Dickens');
 
-      ptor.findElement(
-        protractor.By.repeater('book in books').row(1)).
-        getText().then(function(text) {
-          expect(text).toEqual('Foundation Series by Asimov');
-        });
+      var row2Text = element(by.repeater('book in books').row(1)).getText()
+      expect(row2Text).toEqual('Foundation Series by Asimov');
 
-      ptor.findElement(
-        protractor.By.repeater('book in books').row(2)).
-        getText().then(function(text) {
-          expect(text).toEqual('Treasure Island by Stephenson');
-        });
+      var row3Text = element(by.repeater('book in books').row(2)).getText()
+      expect(row3Text).toEqual('Treasure Island by Stephenson');
     });
   });
 });
