@@ -65,7 +65,8 @@ To run the end-to-end tests:
     webdriver.chrome.driver system property, you may need to download the chromedriver
     (https://code.google.com/p/selenium/wiki/ChromeDriver) and place it in /usr/local/bin (mac).
     
-    For Windows, for selnium to work properly you will need to have the JDK bin folder available in your system path.  The     default 32 bit JDK install path will look like: "C:\Program Files (x86)\Java\jdk1.8.0_05\bin".
+    For Windows, for selnium to work properly you will need to have the JDK bin folder available in your system path. 
+    The default 32 bit JDK install path will look like: "C:\Program Files (x86)\Java\jdk1.8.0_05\bin".
 
 # Defining your apps angular.module in CoffeeScript
 
