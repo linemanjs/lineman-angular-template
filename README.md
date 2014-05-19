@@ -53,7 +53,7 @@ To run the end-to-end tests:
 4. `lineman run` from 1 terminal window
 5. Edit `config/spec-e2e.js` to comment out the `seleniumServerJar` key and uncomment the `seleniumAddress` key; this will tell protractor to hit the already running selenium server from the next command
 6. `start-selenium` from another terminal window
-7. `lineman grunt-spec-e2e` from another terminal window
+7. `lineman grunt spec-e2e` from another terminal window
 
 ## Troubleshooting:
 
@@ -64,6 +64,8 @@ To run the end-to-end tests:
     If you see this error: Fatal error: The path to the driver executable must be set by the
     webdriver.chrome.driver system property, you may need to download the chromedriver
     (https://code.google.com/p/selenium/wiki/ChromeDriver) and place it in /usr/local/bin (mac).
+    
+    For Windows, for selnium to work properly you will need to have the JDK bin folder available in your system path.  The     default 32 bit JDK install path will look like: "C:\Program Files (x86)\Java\jdk1.8.0_05\bin".
 
 # Defining your apps angular.module in CoffeeScript
 
