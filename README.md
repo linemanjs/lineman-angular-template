@@ -37,13 +37,25 @@ To run the unit tests:
 
 To run the end-to-end tests:
 
+## On Mac
+
 1. `npm install protractor`
 2. `brew install selenium-server-standalone`
 3. Make sure you have chrome installed.
 4. `lineman run` from 1 terminal window
 5. `lineman grunt spec-e2e` from another terminal window
 
-  Troubleshooting:
+## On Windows
+
+1. `npm install protractor`
+2. `npm install -g selenium-standalone`
+3. Make sure you have chrome and the latest Java Development Kit (JDK) installed
+4. `lineman run` from 1 terminal window
+5. Edit `config/spec-e2e.js` to comment out the `seleniumServerJar` key and uncomment the `seleniumAddress` key; this will tell protractor to hit the already running selenium server from the next command
+6. `start-selenium` from another terminal window
+7. `lineman grunt-spec-e2e` from another terminal window
+
+## Troubleshooting:
 
     If you see this error: Warning: there's no selenium server jar at the specified location,
     you may need to change the selenium-server-standalone jar version in config/spec-e2e.js
