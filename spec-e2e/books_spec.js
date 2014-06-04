@@ -1,6 +1,3 @@
-var protractor = require('protractor');
-require('protractor/jasminewd');
-
 describe('my angular app', function () {
   var ptor;
 
