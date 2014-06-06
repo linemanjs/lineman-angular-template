@@ -37,7 +37,7 @@ To run the unit tests:
 
 To run the end-to-end tests:
 
-## On Mac
+## End-to-End Tests
 
 1. `npm install protractor`
 2. `./node_modules/protractor/bin/webdriver-manager update`
