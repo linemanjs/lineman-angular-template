@@ -1,6 +1,7 @@
 exports.config = {
-  seleniumServerJar: '../node_modules/protractor/selenium/selenium-server-standalone-2.41.0.jar',
-  seleniumArgs: [],
+  chromeOnly: true,
+  chromeDriver: '../node_modules/protractor/selenium/chromedriver',
+
   specs: [
     '../spec-e2e/**/*spec.{js,coffee}'
   ],
@@ -9,9 +10,7 @@ exports.config = {
   },
   baseUrl: 'http://localhost:8000',
   jasmineNodeOpts: {
-    onComplete: null,
-    isVerbose: false,
     showColors: true,
-    includeStackTrace: true
+    defaultTimeoutInterval: 30000
   }
 };
