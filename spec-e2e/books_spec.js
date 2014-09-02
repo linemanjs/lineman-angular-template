@@ -4,7 +4,7 @@ describe('my angular app', function () {
 
   describe('visiting the books page', function () {
     beforeEach(function () {
-      browser.get('/list-of-books');
+      browser.get('/$resource/list-of-books');
       bookRows = element.all(by.repeater('book in books'));
     });
 

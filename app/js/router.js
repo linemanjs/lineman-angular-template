@@ -12,15 +12,19 @@ angular.module("app").config(function($routeProvider, $locationProvider) {
     controller: 'HomeController'
   });
 
-  $routeProvider.when('/list-of-books', {
-    templateUrl: 'books.html',
-    controller: 'BooksController'
-    // uncomment if you want to see an example of a route that resolves a request prior to rendering
-    // resolve: {
-    //   books : function(BookService) {
-    //     return BookService.get();
-    //   }
-    // }
+  $routeProvider.when('/$resource/list-of-books', {
+    templateUrl: 'books_resource.html',
+    controller: 'BooksResourceController'
+  });
+
+  $routeProvider.when('/$http/list-of-books', {
+    templateUrl: 'books_http.html',
+    controller: 'BooksHttpController',
+    resolve: {
+      books: function(BookService) {
+        return BookService.getBooks();
+      }
+    }
   });
 
   $routeProvider.otherwise({ redirectTo: '/login' });
