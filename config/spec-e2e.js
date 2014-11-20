@@ -1,5 +1,5 @@
 exports.config = {
-  chromeOnly: true,
+  directConnect: true,
   chromeDriver: '../node_modules/protractor/selenium/chromedriver',
 
   specs: [
@@ -10,6 +10,7 @@ exports.config = {
   },
   baseUrl: 'http://localhost:8000',
   jasmineNodeOpts: {
+    isVerbose: true,
     showColors: true,
     defaultTimeoutInterval: 30000
   }

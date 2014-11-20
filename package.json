@@ -13,7 +13,7 @@
     "lineman": "^0.34.0",
     "lineman-angular": "^0.3.0",
     "lineman-less": "0.0.1",
-    "protractor": "^1.2.0-beta1"
+    "protractor": "^1.4.0"
   },
   "scripts": {
     "start": "lineman run",
