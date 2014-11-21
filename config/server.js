@@ -14,24 +14,24 @@
 
 module.exports = {
   drawRoutes: function(app) {
-    app.post('/auth/login', function(req, res) {
-      res.json({ message: 'logging in!' });
-    });
+    // app.post('/auth/login', function(req, res) {
+    //   res.json({ message: 'logging in!' });
+    // });
 
-    app.get('/auth/logout', function(req, res) {
-      res.json({ message: 'logging out!'});
-    });
+    // app.get('/auth/logout', function(req, res) {
+    //   res.json({ message: 'logging out!'});
+    // });
 
-    app.get('/books', function (req, res) {
-      res.json([
-        {title: 'Great Expectations', author: 'Dickens'},
-        {title: 'Foundation Series', author: 'Asimov'},
-        {title: 'Treasure Island', author: 'Stephenson'}
-      ]);
-    });
+    // app.get('/books', function (req, res) {
+    //   res.json([
+    //     {title: 'Great Expectations', author: 'Dickens'},
+    //     {title: 'Foundation Series', author: 'Asimov'},
+    //     {title: 'Treasure Island', author: 'Stephenson'}
+    //   ]);
+    // });
 
-    app.get('/auth/csrf_token', function(req, res) {
-      res.json({ csrf_token: 'weeeee' });
-    });
+    // app.get('/auth/csrf_token', function(req, res) {
+    //   res.json({ csrf_token: 'weeeee' });
+    // });
   }
 };

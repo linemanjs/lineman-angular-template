@@ -6,7 +6,7 @@
     // this works!
     $rootScope.$apply(function() {
       $http.get("/auth/csrf_token").then(function(response) {
-        angular.module("app").constant("CSRF_TOKEN", response.csrf_token);
+        angular.module("app").constant("CSRF_TOKEN", response.data.csrf_token);
         angular.bootstrap(document, ['app']);
       });
     });
