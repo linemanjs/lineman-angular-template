@@ -14,11 +14,11 @@
 
 module.exports = {
   drawRoutes: function(app) {
-    app.post('/login', function(req, res) {
+    app.post('/auth/login', function(req, res) {
       res.json({ message: 'logging in!' });
     });
 
-    app.post('/logout', function(req, res) {
+    app.get('/auth/logout', function(req, res) {
       res.json({ message: 'logging out!'});
     });
 
@@ -28,6 +28,10 @@ module.exports = {
         {title: 'Foundation Series', author: 'Asimov'},
         {title: 'Treasure Island', author: 'Stephenson'}
       ]);
+    });
+
+    app.get('/auth/csrf_token', function(req, res) {
+      res.json({ csrf_token: 'weeeee' });
     });
   }
 };

@@ -1,17 +1,26 @@
-<!DOCTYPE html>
-<html ng-app="app">
-  <head>
-    <title><%= pkg.name %></title>
-    <link rel="stylesheet" type="text/css" href="/css/app.css" media="all" />
-  </head>
-  <body>
-    <div class="row">
-      <div class="large-12">
-        <h1>A Lineman Angular Setup</h1>
-        <div id="view" ng-view></div>
-      </div>
-    </div>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title><%= pkg.name %></title>
+  <link rel="stylesheet" href="<%= css %>">
+</head>
+<body ng-cloak>
 
-    <script type="text/javascript" src="/js/app.js"></script>
-  </body>
+  <div class="row">
+    <div class="large-12">
+      <h1>Frontend Workflows with Angular JS</h1>
+      <div class="row">
+        <div class="large-6 large-offset-3">
+          <div id="flash" class="alert-box alert ng-cloak" ng-show="flash">
+            {{ flash }}
+          </div>
+        </div>
+      </div>
+      <div id="view" ng-view></div>
+    </div>
+  </div>
+
+  <script src="<%= js %>"></script>
+</body>
 </html>
