@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="app">
   <head>
+    <base href="/"></base>
     <title><%= pkg.name %></title>
     <link rel="stylesheet" type="text/css" href="/css/app.css" media="all" />
   </head>
