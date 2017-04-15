@@ -3,7 +3,7 @@ exports.config = {
   chromeDriver: '../node_modules/protractor/selenium/chromedriver',
 
   specs: [
-    '../spec-e2e/**/*spec.{js,coffee}'
+    '../spec-e2e/**/*spec.js'
   ],
   capabilities: {
     'browserName': 'chrome'
